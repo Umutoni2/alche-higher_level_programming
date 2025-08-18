@@ -1,3 +1,24 @@
-#!/bin/bash
-echo "Compiling $PYFILE ..."
-python3 -c "import marshal; f=open('$PYFILE'); code=compile(f.read(), '$PYFILE', 'exec'); f.close(); open('${PYFILE}c', 'wb').write(b'\0\0\0\0' + marshal.dumps(code))"
+#!/usr/bin/env bash
+if [ -z "$PYFILE" ]; then
+    echo "Error: PYFILE environment variable is not set."
+    exit 1
+fi
+
+if [ ! -f "$PYFILE" ]; then
+    echo "Error: $PYFILE not found."
+    exit 1
+fi
+
+filename=$(basename "$PYFILE")
+file_base="${filename%.*}"
+
+output_file="$file_base.pyc"
+
+python3 -m py_compile -o "$output_file" "$PYFILE"
+
+if [ $? -eq 0 ]; then
+    echo "Compiling $PYFILE ..."
+else
+    echo "Compilation of $PYFILE failed."
+    exit 1
+fi
