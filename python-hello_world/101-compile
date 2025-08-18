@@ -1,9 +1,8 @@
 #!/bin/bash
-import py_compile
-import os
-import sys
-pyfile = os.environ.get('PYFILE')
-if pyfile:
-    print(f"Compiling {pyfile} ...")
-    py_compile.compile(pyfile, cfile=pyfile + 'c')
-    sys.exit(1)  # Exit with status code 
+if [ -z "$PYFILE" ]; then
+    exit 1
+fi
+echo "Compiling $PYFILE ..."
+python3 -m py_compile "$PYFILE"
+mv "${PYFILE}c" "${PYFILE}c"
+exit 1
