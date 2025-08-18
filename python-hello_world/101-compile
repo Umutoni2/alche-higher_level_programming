@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Compiling $PYFILE ..."
-python3 -m compileall "$PYFILE" --invalidation-mode=unchecked-hash
+python3 -m py_compile "$PYFILE"
 compiled=$(find __pycache__ -name "$(basename "$PYFILE" .py).*pyc")
 mv "$compiled" "${PYFILE}c"
+rmdir __pycache__ 2>/dev/null
