@@ -9,4 +9,4 @@ if a == 0:
     print("Last digit of", number, "is", a, "and is 0")
 
 if a < 6:
-    print("Last digit of", number, "is", a, "and is less than 6")
+    print("Last digit of", number, "is", a, "and is less than 6 and is not 0")
