@@ -8,5 +8,5 @@ if a > 5:
 if a == 0:
     print("Last digit of", number, "is", a, "and is 0")
 
-if a < 6:
+if a < 6 and a != 0:
     print("Last digit of", number, "is", a, "and is less than 6 and not 0")
