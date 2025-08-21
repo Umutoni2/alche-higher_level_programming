@@ -1,0 +1,4 @@
+#!/usr/bin/python3
+def isupper(str):
+   if ord(str) >= 97 and ord(str) <= 123:
+     return ord(str)
