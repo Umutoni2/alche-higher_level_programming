@@ -1,5 +1,13 @@
----
+Ah! The error you’re seeing is because of the **`---` at the top** in combination with Markdown. In YAML or some parsers, `---` is interpreted as a YAML document separator, and if you mix it with Markdown list formatting immediately after, it can cause the “did not find expected alphabetic or numeric character” error.
 
+To fix it:
+
+1. **Remove the top `---`**, unless you specifically need it for YAML front matter.
+2. Keep your Markdown as-is.
+
+Here’s the corrected version:
+
+````markdown
 # Python Exceptions
 
 ## Overview
@@ -18,10 +26,10 @@ This folder contains Python exercises demonstrating **exception handling**. Each
 
 ## How to Run
 
-```bash
+--- bash
 python3 0-main.py
 python3 3-main.py
-```
+---
 
 ## Learning Outcomes
 
@@ -30,3 +38,7 @@ python3 3-main.py
 * Raise and manage exceptions in Python
 
 ---
+
+
+If you want, I can **also rewrite it fully as a one-page, YAML-compatible Markdown** so it won’t trigger any errors. Do you want me to do that?
+```
