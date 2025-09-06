@@ -1,6 +1,6 @@
-#!/usr/bin/python3    
+#!/usr/bin/python3
 def raise_exception():
     try:
-        raise_exception()
+        raise TypeError("operation applied is the wrong type")
     except Exception as e:
-         print("Exception raised",e)
+        print("Exception has been raised")
