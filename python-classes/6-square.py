@@ -2,7 +2,6 @@
 """This module defines the Square class with size and position attributes."""
 
 
-
 class Square:
     """
     Defines a square with a private size and position attribute.
