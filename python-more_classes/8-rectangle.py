@@ -1,68 +1,87 @@
-8. Compare rectangles
-mandatory
-Write a class Rectangle that defines a rectangle by: (based on 7-rectangle.py)
-
-Private instance attribute: width:
-property def width(self): to retrieve it
-property setter def width(self, value): to set it:
-width must be an integer, otherwise raise a TypeError exception with the message width must be an integer
-if width is less than 0, raise a ValueError exception with the message width must be >= 0
-Private instance attribute: height:
-property def height(self): to retrieve it
-property setter def height(self, value): to set it:
-height must be an integer, otherwise raise a TypeError exception with the message height must be an integer
-if height is less than 0, raise a ValueError exception with the message height must be >= 0
-Public class attribute number_of_instances:
-Initialized to 0
-Incremented during each new instance instantiation
-Decremented during each instance deletion
-Public class attribute print_symbol:
-Initialized to #
-Used as symbol for string representation
-Can be any type
-Instantiation with optional width and height: def __init__(self, width=0, height=0):
-Public instance method: def area(self): that returns the rectangle area
-Public instance method: def perimeter(self): that returns the rectangle perimeter:
-if width or height is equal to 0, perimeter has to be equal to 0
-print() and str() should print the rectangle with the character #:
-if width or height is equal to 0, return an empty string
-repr() should return a string representation of the rectangle to be able to recreate a new instance by using eval()
-Print the message Bye rectangle... (... being 3 dots not ellipsis) when an instance of Rectangle is deleted
-Static method def bigger_or_equal(rect_1, rect_2): that returns the biggest rectangle based on the area
-rect_1 must be an instance of Rectangle, otherwise raise a TypeError exception with the message rect_1 must be an instance of Rectangle
-rect_2 must be an instance of Rectangle, otherwise raise a TypeError exception with the message rect_2 must be an instance of Rectangle
-Returns rect_1 if both have the same area value
-You are not allowed to import any module
-guillaume@ubuntu:~/$ cat 8-main.py
 #!/usr/bin/python3
-Rectangle = __import__('8-rectangle').Rectangle
-
-my_rectangle_1 = Rectangle(8, 4)
-my_rectangle_2 = Rectangle(2, 3)
-
-if my_rectangle_1 is Rectangle.bigger_or_equal(my_rectangle_1, my_rectangle_2):
-    print("my_rectangle_1 is bigger or equal to my_rectangle_2")
-else:
-    print("my_rectangle_2 is bigger than my_rectangle_1")
+"""This module defines a Rectangle class."""
 
 
-my_rectangle_2.width = 10
-my_rectangle_2.height = 5
-if my_rectangle_1 is Rectangle.bigger_or_equal(my_rectangle_1, my_rectangle_2):
-    print("my_rectangle_1 is bigger or equal to my_rectangle_2")
-else:
-    print("my_rectangle_2 is bigger than my_rectangle_1")
+class Rectangle:
+    """Represents a rectangle."""
 
-guillaume@ubuntu:~/$ ./8-main.py
-my_rectangle_1 is bigger or equal to my_rectangle_2
-my_rectangle_2 is bigger than my_rectangle_1
-Bye rectangle...
-Bye rectangle...
-guillaume@ubuntu:~/$ 
-No test cases needed
+    number_of_instances = 0
+    print_symbol = "#"
 
-Repo:
+    def __init__(self, width=0, height=0):
+        """Initializes a new Rectangle instance."""
+        self.width = width
+        self.height = height
+        Rectangle.number_of_instances += 1
 
-GitHub repository: alche-higher_level_programming
-Directory: python-more_classes
-File: 8-rectangle.py
+    @property
+    def width(self):
+        """Retrieve the width of the rectangle."""
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        """Set the width of the rectangle."""
+        if not isinstance(value, int):
+            raise TypeError("width must be an integer")
+        if value < 0:
+            raise ValueError("width must be >= 0")
+        self.__width = value
+
+    @property
+    def height(self):
+        """Retrieve the height of the rectangle."""
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """Set the height of the rectangle."""
+        if not isinstance(value, int):
+            raise TypeError("height must be an integer")
+        if value < 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
+
+    def area(self):
+        """Calculates and returns the area of the rectangle."""
+        return self.__width * self.__height
+
+    def perimeter(self):
+        """Calculates and returns the perimeter of the rectangle."""
+        if self.__width == 0 or self.__height == 0:
+            return 0
+        return 2 * (self.__width + self.__height)
+
+    def __str__(self):
+        """Returns a string representation of the rectangle."""
+        if self.__width == 0 or self.__height == 0:
+            return ""
+        
+        rectangle_str = ""
+        for i in range(self.__height):
+            rectangle_str += str(self.print_symbol) * self.__width
+            if i < self.__height - 1:
+                rectangle_str += "\n"
+        return rectangle_str
+
+    def __repr__(self):
+        """Returns a string representation to recreate the object."""
+        return f"Rectangle({self.__width}, {self.__height})"
+
+    def __del__(self):
+        """Prints a message when an instance is deleted."""
+        print("Bye rectangle...")
+        Rectangle.number_of_instances -= 1
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """Returns the biggest rectangle based on the area."""
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        else:
+            return rect_2
