@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""Defines a class Square."""
+"""This module defines the Square class."""
+
 
 class Square:
-    """Represents a square."""
+    """Defines a square with a private size attribute."""
 
     def __init__(self, size=0):
-        """Initialize a new Square."""
+        """Initializes a new Square instance."""
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
-        self.size = size
-        self.dict_ = {'size': self.size}
+        self.__size = size
