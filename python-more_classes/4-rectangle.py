@@ -1,16 +1,22 @@
 #!/usr/bin/python3
-"""This module defines a Rectangle class."""
+"""A class Rectangle that defines a rectangle based on 1-rectangle.py"""
 
 
 class Rectangle:
-    """Represents a rectangle."""
-
+    """The Rectangle class"""
     def __init__(self, width=0, height=0):
+        """Initialize a Rectangle object.
+
+        Args:
+            width (int): The width of the rectangle.
+            height (int): The height of the rectangle.
+        """
         self.width = width
         self.height = height
 
     @property
     def width(self):
+        """property(get&set) for the width of the Rectangle."""
         return self.__width
 
     @width.setter
@@ -23,6 +29,7 @@ class Rectangle:
 
     @property
     def height(self):
+        """property(get&set) for the height of the Rectangle."""
         return self.__height
 
     @height.setter
@@ -34,23 +41,27 @@ class Rectangle:
         self.__height = value
 
     def area(self):
-        return self.__width * self.__height
+        """Returns the area of the Rectangle."""
+        return (self.__width * self.__height)
 
     def perimeter(self):
+        """Returns the perimeter of the Rectangle."""
         if self.__width == 0 or self.__height == 0:
-            return 0
-        return 2 * (self.__width + self.__height)
+            return (0)
+        return ((self.__width * 2) + (self.__height * 2))
 
     def __str__(self):
+        """Returns the rectangle with the character #"""
         if self.__width == 0 or self.__height == 0:
-            return ""
-            
-        rectangle_str = ""
-        for i in range(self.__height):
-            rectangle_str += "#" * self.__width
-            if i < self.__height - 1:
-                rectangle_str += "\n"
-        return rectangle_str
+            return ("")
+        output = []
+        for x in range(self.__height):
+            [output.append('#') for y in range(self.__width)]
+            if x != self.__height - 1:
+                output.append('\n')
+        return "".join(output)
 
     def __repr__(self):
-        return f"Rectangle({self.__width}, {self.__height})"
+        """Return the string representation of the Rectangle."""
+        string = f"Rectangle({str(self.__width)}, {str(self.__height)})"
+        return string
