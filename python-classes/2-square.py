@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Defines a class Square."""
 
-
 class Square:
     """Represents a square."""
 
@@ -12,3 +11,4 @@ class Square:
         if size < 0:
             raise ValueError("size must be >= 0")
         self.size = size
+        self.dict_ = {'size': self.size}
