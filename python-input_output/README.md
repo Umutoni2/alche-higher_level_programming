@@ -1,4 +1,3 @@
-
 ````
 # Python Input/Output Project
 
@@ -27,3 +26,5 @@ python3 <script_name>.py
 ## Author
 
 Sylvie UMUTONI RUTAGANIRA
+
+
