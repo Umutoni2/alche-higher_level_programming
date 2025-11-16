@@ -21,3 +21,5 @@
 * Python - Test-driven development
 * Python - Almost a circle
 * Python - Object-relational mapping
+* JavaScript - Warm up
+* JavaScript - Objects, Scopes and Closures
