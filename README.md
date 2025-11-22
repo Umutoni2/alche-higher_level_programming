@@ -23,3 +23,5 @@
 * Python - Object-relational mapping
 * JavaScript - Warm up
 * JavaScript - Objects, Scopes and Closures
+* JavaScript - Web scraping
+* JavaScript - Web jQuery
